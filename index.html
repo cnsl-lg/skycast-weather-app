@@ -4,8 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SkyCast | Know Your Weather, Anytime, Anywhere!</title>
+  <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon">
+
+  <!-- Import Bootstrap Stylesheet -->
+  <link rel="stylesheet" href="./bootstrap-5.3.0-dist/css/bootstrap.min.css">
 </head>
 <body>
-  
+  <!-- === Container === -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-sm-9" id="app">
+        <!-- === Header === -->
+        <header class="container mt-5">
+          <div class="row flex-column gap-2">
+            <div class="col">
+              <h2 class="fw-bolder d-flex align-items-center">
+                <img src="./assets/icon.png" alt="icon-app" width="40" class="me-1">SkyCast
+              </h2>
+            </div>
+            <div class="col">
+              <form class="d-flex input-group" role="search">
+                <input type="text" class="form-control border-3 border-primary-subtle rounded-start-pill" placeholder="Find your location" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-primary  rounded-end-pill" type="button" id="button-addon2">Button</button>
+            </div>
+          </div>
+        </header>
+        <!-- === End of Header === -->
+        
+
+        <!-- === Card === -->
+        <main class="container mt-4">
+          <div class="row">
+            <div class="col">
+              <div class="card w-100 border-3 rounded-5" style="width: 18rem;">
+                <div class="row g-0">
+                  <div class="col-md-5 p-3 text-center">
+                    <img src="./assets/icon.png" alt="" width="80">
+                    <h4 class="card-title mt-1">Surabaya</h4>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Indonesia</h6>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <h1 class="card-title">26<sup>&#8451;</sup></h1>
+                      <h6 class="mb-3">Partly cloudy</h6>
+                      <p class="card-text m-0">Wind : 6.8 km/h</p>
+                      <p class="card-text m-0">Humidity : 89%</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- === End of Card === -->
+      </div>
+    </div>
+  </div>
+  <!-- === End of Container === -->
+
+
+  <!-- Import Boostrap JavaScript -->
+  <script src="./bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Impoer Additional Script -->
+  <script src="./script.js"></script>
 </body>
 </html>
