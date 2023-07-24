@@ -4,41 +4,36 @@ const cardColoumn = document.getElementsByClassName('card-coloumn')[0] // select
 
 
 
-// Connet to Public API From weatherapi.com
-const getAPI = (function () {
-  fetch(`http://api.weatherapi.com/v1/current.json?key=dde6f13080d34176b63135831232307&q=indonesia`)
-    .then(results => results.json()) // Change the Promise Into Object
-    .then(results => {
-      // Destruc the Results Object From API
-      const {location, current} = results
-
-      // Put the Object Into Card Element
-      return cardColoumn.innerHTML = cardContent(location, current)
-    })
-})()
-
-
-
 // Make Event When the Search Button Click
-searchButton.addEventListener('click', () => {
+searchButton.addEventListener('click', async () => {
   // Select Input Element From HTML
   const inputLocation = document.getElementById('input-location')
-  
-  // Connet to Public API From weatherapi.com
-  fetch(`http://api.weatherapi.com/v1/current.json?key=dde6f13080d34176b63135831232307&q=${inputLocation.value}`)
-  .then(results => results.json()) // Change the Promise Into Object
-  .then(results => {
-    // Destruc the Results Object From API
-    const {location, current} = results
-
-    // Put the Object Into Card Element
-    return cardColoumn.innerHTML = cardContent(location, current)
-  })
+  // Run getWeatherAPI function and put in weatherData variable
+  const weatherData = await getWeatherAPI(inputLocation.value)
+  // Run the updateUI function
+  updateUI(weatherData)
 
   // Set the Input value to empty
   inputLocation.value = ''
 })
 
+
+// Make function for connecting to API
+function getWeatherAPI(location) {
+  // Connet to Public API From weatherapi.com
+  return fetch(`http://api.weatherapi.com/v1/current.json?key=dde6f13080d34176b63135831232307&q=${location}`)
+          .then(results => results.json()) // Change the Promise Into Object
+          .then(results => results)
+}
+
+
+// Make a function for displaying the results of and API
+function updateUI(dataResults) {
+  // Destruc the Results Object From API
+  const {location, current} = dataResults
+  // Put the Object Into Card Element
+  cardColoumn.innerHTML = cardContent(location, current)
+}
 
 
 // Make Card Element and Put the Object Data to This Element
