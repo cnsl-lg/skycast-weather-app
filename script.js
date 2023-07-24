@@ -1,29 +1,47 @@
-const searchButton = document.getElementById('search-button')
-const cardColoumn = document.getElementsByClassName('card-coloumn')[0]
+// Select HTML Element
+const searchButton = document.getElementById('search-button') // Select search button
+const cardColoumn = document.getElementsByClassName('card-coloumn')[0] // select card coloumn
 
+
+
+// Connet to Public API From weatherapi.com
 const getAPI = (function () {
   fetch(`http://api.weatherapi.com/v1/current.json?key=dde6f13080d34176b63135831232307&q=indonesia`)
-    .then(results => results.json())
+    .then(results => results.json()) // Change the Promise Into Object
     .then(results => {
+      // Destruc the Results Object From API
       const {location, current} = results
+
+      // Put the Object Into Card Element
       return cardColoumn.innerHTML = cardContent(location, current)
     })
 })()
 
 
+
+// Make Event When the Search Button Click
 searchButton.addEventListener('click', () => {
+  // Select Input Element From HTML
   const inputLocation = document.getElementById('input-location')
   
+  // Connet to Public API From weatherapi.com
   fetch(`http://api.weatherapi.com/v1/current.json?key=dde6f13080d34176b63135831232307&q=${inputLocation.value}`)
-  .then(results => results.json())
+  .then(results => results.json()) // Change the Promise Into Object
   .then(results => {
+    // Destruc the Results Object From API
     const {location, current} = results
+
+    // Put the Object Into Card Element
     return cardColoumn.innerHTML = cardContent(location, current)
   })
 
+  // Set the Input value to empty
   inputLocation.value = ''
 })
 
+
+
+// Make Card Element and Put the Object Data to This Element
 function cardContent({name, country}, {temp_c, condition, wind_kph, humidity}) {
   return `
   <div class="card w-100 border-3 rounded-5" style="width: 18rem;">
